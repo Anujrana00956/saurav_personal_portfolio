@@ -795,10 +795,20 @@ main {
   margin-bottom: 7px;
 }
 
-.timeline-list span {
+.timeline-list .year {
+  color: var(--vegas-gold);
+  font-weight: var(--fw-200);
+  line-height: 1.6;
+  font-size: 5;
+      font-style: italic;
+
+}
+ .company {
   color: var(--vegas-gold);
   font-weight: var(--fw-400);
   line-height: 1.6;
+  font-size: 16;
+
 }
 
 .timeline-item:not(:last-child)::before {
@@ -823,10 +833,16 @@ main {
   box-shadow: 0 0 0 4px var(--jet);
 }
 
-.timeline-text {
+.timeline-text  {
   color: var(--light-gray);
   font-weight: var(--fw-300);
   line-height: 1.6;
+}
+.timeline-text li{
+    list-style-type: disc;
+  color: var(--light-gray);
+  font-weight: var(--fw-300);
+  line-height: 1.8;
 }
 
 
@@ -1538,6 +1554,111 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
 
   .form-btn ion-icon { font-size: 18px; }
+/* Container */
+.alternate-contact {
+  max-width: 480px;
+  margin: 2rem auto;
+  padding: 1.5rem 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.alternate-contact .form-title {
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #222;
+  letter-spacing: 0.05em;
+}
+
+.contact-description {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+/* Contact Options List */
+.contact-options {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2.5rem;
+}
+
+.contact-options li {
+  margin: 1rem 0;
+}
+
+/* Links Styling */
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.125rem;
+  color: #2a2a2a;
+  text-decoration: none;
+  border: 2px solid transparent;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(42,42,42,0.1);
+}
+
+.contact-link:hover,
+.contact-link:focus {
+  background: #0f62fe;
+  color: white;
+  border-color: #0f62fe;
+  box-shadow: 0 8px 15px rgba(15,98,254,0.4);
+  outline: none;
+}
+
+/* Icons */
+.contact-icon {
+  margin-right: 0.75rem;
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.contact-link:hover .contact-icon {
+  transform: scale(1.2);
+}
+
+/* WhatsApp icon color */
+.contact-icon.whatsapp {
+  color: #25D366;
+}
+
+/* Button styling */
+.contact-btn {
+  background: #0f62fe;
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 6px 15px rgba(15, 98, 254, 0.5);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-btn:hover,
+.contact-btn:focus {
+  background: #0046ca;
+  box-shadow: 0 8px 20px rgba(0, 70, 202, 0.8);
+  outline: none;
+}
+
+/* Button Icon */
+.btn-icon {
+  font-size: 1.6rem;
+}
 
 }
 
@@ -1879,4 +2000,5 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .timeline-text { max-width: 700px; }
 
+  
 }
