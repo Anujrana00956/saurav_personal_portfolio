@@ -824,9 +824,16 @@ main {
 }
 
 .timeline-text {
+  
   color: var(--light-gray);
   font-weight: var(--fw-300);
   line-height: 1.6;
+}
+.timeline-text li{
+   list-style-type: disc;
+  color: var(--light-gray);
+  font-weight: var(--fw-300);
+  line-height: 3;
 }
 
 
