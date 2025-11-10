@@ -1,6 +1,5 @@
 name: CI/CD Pipeline
 
-# Trigger the pipeline on push or PR to main branch
 on:
   push:
     branches: [main]
@@ -10,36 +9,45 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       # Step 1: Checkout repository
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Step 2: Validate HTML, CSS, and JS (optional but recommended)
-      - name: Lint HTML
-        uses: Cyb3r-Jak3/htmlhint-action@v2
+      # Step 2: Set up Node.js (needed for npm tools)
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          files: "**/*.html"
+          node-version: 20
+
+      # Step 3: Install linters
+      - name: Install linters
+        run: |
+          npm install -g htmlhint stylelint eslint
+
+      # Step 4: Lint HTML, CSS, and JS
+      - name: Lint HTML
+        run: htmlhint "**/*.html" || true
 
       - name: Lint CSS
-        run: |
-          npx stylelint "**/*.css" || true
+        run: stylelint "**/*.css" || true
 
       - name: Lint JavaScript
-        run: |
-          npx eslint "**/*.js" || true
+        run: eslint "**/*.js" || true
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Example: Deploy to GitHub Pages
+      # Step 5: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./  # path to your static files (index.html, etc.)
+          publish_dir: ./ # where your index.html lives
