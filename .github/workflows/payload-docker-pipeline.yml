@@ -1,0 +1,45 @@
+name: CI/CD Pipeline
+
+# Trigger the pipeline on push or PR to main branch
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Validate HTML, CSS, and JS (optional but recommended)
+      - name: Lint HTML
+        uses: Cyb3r-Jak3/htmlhint-action@v2
+        with:
+          files: "**/*.html"
+
+      - name: Lint CSS
+        run: |
+          npx stylelint "**/*.css" || true
+
+      - name: Lint JavaScript
+        run: |
+          npx eslint "**/*.js" || true
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Example: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./  # path to your static files (index.html, etc.)
