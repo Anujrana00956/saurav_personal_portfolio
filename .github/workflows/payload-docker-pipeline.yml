@@ -40,14 +40,12 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Step 5: Deploy to GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./ # where your index.html lives
+      - name: Deploy
+        run: |
+          echo "Deploying to production..."
+          # Example deployment commands:
+          # ssh user@server "cd /app && git pull && npm install && pm2 restart app"
